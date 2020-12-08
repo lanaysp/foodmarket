@@ -53,7 +53,7 @@ class GeneralPage extends StatelessWidget {
                                     decoration: BoxDecoration(
                                       image: DecorationImage(
                                         image:
-                                            AssetImage('assets/back_arrow.png'),
+                                            AssetImage('assets/black_back_arrow.png'),
                                       ),
                                     ),
                                   ),

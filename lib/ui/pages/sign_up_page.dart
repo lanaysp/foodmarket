@@ -31,8 +31,7 @@ class _SignUpPageState extends State<SignUpPage> {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(
-                    image: NetworkImage(
-                        'https://johannesippen.com/img/blog/humans-not-users/header.jpg'),
+                    image: AssetImage('assets/photo.png'),
                     fit: BoxFit.cover),
               ),
             ),
@@ -124,7 +123,7 @@ class _SignUpPageState extends State<SignUpPage> {
               child: Text(
                 'Continue',
                 style: GoogleFonts.poppins(
-                    color: Colors.black, fontWeight: FontWeight.w500),
+                    color: Colors.white, fontWeight: FontWeight.w500),
               ),
             ),
           ),

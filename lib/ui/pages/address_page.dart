@@ -119,7 +119,9 @@ class _AddressPageState extends State<AddressPage> {
             height: 45,
             padding: EdgeInsets.symmetric(horizontal: defaultMargin),
             child: RaisedButton(
-              onPressed: () {},
+              onPressed: () {
+                 Get.to(SucessSignUp());
+              },
               elevation: 0,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8)),
@@ -127,7 +129,7 @@ class _AddressPageState extends State<AddressPage> {
               child: Text(
                 'Sign Up Now',
                 style: GoogleFonts.poppins(
-                    color: Colors.black, fontWeight: FontWeight.w500),
+                    color: Colors.white, fontWeight: FontWeight.w500),
               ),
             ),
           ),

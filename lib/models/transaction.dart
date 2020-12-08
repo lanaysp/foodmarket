@@ -39,33 +39,34 @@ class Transaction extends Equatable {
   }
 
   @override
+  // ignore: todo
   // TODO: implement props
   List<Object> get props => [id, food, quantity, total, dateTime, status, user];
 }
 
 List<Transaction> mockTransactions = [
-  Transaction(
-      id: 1,
-      food: mockFoods[1],
-      quantity: 10,
-      total: (mockFoods[1].price * 10 * 1.1).round() + 50000,
-      dateTime: DateTime.now(),
-      status: TransactionStatus.on_delivery,
-      user: mockUser),
-  Transaction(
-      id: 2,
-      food: mockFoods[2],
-      quantity: 7,
-      total: (mockFoods[2].price * 7 * 1.1).round() + 50000,
-      dateTime: DateTime.now(),
-      status: TransactionStatus.delivered,
-      user: mockUser),
-  Transaction(
-      id: 3,
-      food: mockFoods[3],
-      quantity: 5,
-      total: (mockFoods[3].price * 5 * 1.1).round() + 50000,
-      dateTime: DateTime.now(),
-      status: TransactionStatus.cancelled,
-      user: mockUser),
+  // Transaction(
+  //     id: 1,
+  //     food: mockFoods[1],
+  //     quantity: 5,
+  //     total: (mockFoods[1].price * 10 * 1.1).round() + 50000,
+  //     dateTime: DateTime.now(),
+  //     status: TransactionStatus.on_delivery,
+  //     user: mockUser),
+  // Transaction(
+  //     id: 2,
+  //     food: mockFoods[2],
+  //     quantity: 2,
+  //     total: (mockFoods[2].price * 7 * 1.1).round() + 50000,
+  //     dateTime: DateTime.now(),
+  //     status: TransactionStatus.delivered,
+  //     user: mockUser),
+  // Transaction(
+  //     id: 3,
+  //     food: mockFoods[3],
+  //     quantity: 2,
+  //     total: (mockFoods[3].price * 5 * 1.1).round() + 50000,
+  //     dateTime: DateTime.now(),
+  //     status: TransactionStatus.cancelled,
+  //     user: mockUser),
 ];

@@ -6,11 +6,11 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
-    TextEditingController emailController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
-    bool isLoading = false;
     return GeneralPage(
       title: 'Sign In',
       subtitle: "Find your best ever meal",
@@ -70,12 +70,47 @@ class _SignInPageState extends State<SignInPage> {
             height: 45,
             padding: EdgeInsets.symmetric(horizontal: defaultMargin),
             child: isLoading
-                ? SpinKitFadingCircle(
-                    size: 45,
-                    color: mainColor,
-                  )
+                ? loadingIndicator
                 : RaisedButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      setState(() {
+                        isLoading = true;
+                      });
+
+                      // ignore: deprecated_member_use
+                      await context.bloc<UserCubit>().signIn(
+                          emailController.text, passwordController.text);
+
+                      // ignore: deprecated_member_use
+                      UserState state = context.bloc<UserCubit>().state;
+
+                      if (state is UserLoaded) {
+                        // ignore: deprecated_member_use
+                        context.bloc<FoodCubit>().getFoods();
+                        // ignore: deprecated_member_use
+                        context.bloc<TransactionCubit>().getTransactions();
+                        Get.to(MainPage());
+                      } else {
+                        Get.snackbar("", "",
+                            backgroundColor: "D9435E".toColor(),
+                            icon: Icon(
+                              MdiIcons.closeCircleOutline,
+                              color: Colors.white,
+                            ),
+                            titleText: Text(
+                              "Sign In Failde",
+                              style: GoogleFonts.poppins(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                            
+                            messageText: Text((state as UserLoadingFailed).message, style: GoogleFonts.poppins(color: Colors.white),));
+
+                        setState(() {
+                          isLoading = false;
+                        });
+                      }
+                    },
                     elevation: 0,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8)),
@@ -83,7 +118,7 @@ class _SignInPageState extends State<SignInPage> {
                     child: Text(
                       'Sign In',
                       style: GoogleFonts.poppins(
-                          color: Colors.black, fontWeight: FontWeight.w500),
+                          color: Colors.white, fontWeight: FontWeight.w500),
                     ),
                   ),
           ),
@@ -92,12 +127,13 @@ class _SignInPageState extends State<SignInPage> {
             margin: EdgeInsets.only(top: 24),
             height: 45,
             padding: EdgeInsets.symmetric(horizontal: defaultMargin),
-            child: isLoading
-                ? SpinKitFadingCircle(
-                    size: 45,
-                    color: mainColor,
-                  )
-                : RaisedButton(
+            child: 
+            // isLoading
+            //     ? SpinKitFadingCircle(
+            //         size: 45,
+            //         color: mainColor,
+            //       ) :
+                 RaisedButton(
                     onPressed: () {
                       Get.to(SignUpPage());
                     },
